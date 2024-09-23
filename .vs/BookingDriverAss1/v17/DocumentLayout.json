@@ -1,0 +1,177 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|d:\\cn8\\prn231\\ass1\\bookingdriverass1\\domain\\entity\\coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\domain\\entity\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\domain\\entity\\trip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\trip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\application\\service\\authenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|solutionrelative:application\\service\\authenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\application\\iservice\\iauthenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|solutionrelative:application\\iservice\\iauthenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F00CB623-F618-4064-93DA-E1442A6083B7}|Infrastructure\\Infrastructure.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F00CB623-F618-4064-93DA-E1442A6083B7}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\application\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90D58086-E6D1-403A-AAB2-0AA4907B18A1}|Application\\Application.csproj|solutionrelative:application\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\domain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Coordinate.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Coordinate.cs",
+              "RelativeDocumentMoniker": "Domain\\Entity\\Coordinate.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Coordinate.cs",
+              "RelativeToolTip": "Domain\\Entity\\Coordinate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:53:53.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Rating.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Rating.cs",
+              "RelativeDocumentMoniker": "Domain\\Entity\\Rating.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Rating.cs",
+              "RelativeToolTip": "Domain\\Entity\\Rating.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:50:41.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Trip.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Trip.cs",
+              "RelativeDocumentMoniker": "Domain\\Entity\\Trip.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Trip.cs",
+              "RelativeToolTip": "Domain\\Entity\\Trip.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:31:34.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entity\\User.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\User.cs",
+              "RelativeToolTip": "Domain\\Entity\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:29:31.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthenService.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Service\\AuthenService.cs",
+              "RelativeDocumentMoniker": "Application\\Service\\AuthenService.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Service\\AuthenService.cs",
+              "RelativeToolTip": "Application\\Service\\AuthenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:24:32.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IAuthenService.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\IService\\IAuthenService.cs",
+              "RelativeDocumentMoniker": "Application\\IService\\IAuthenService.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\IService\\IAuthenService.cs",
+              "RelativeToolTip": "Application\\IService\\IAuthenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:20:01.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Infrastructure\\Class1.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Class1.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Infrastructure\\Class1.cs",
+              "RelativeToolTip": "Infrastructure\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:06:19.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Class1.cs",
+              "RelativeDocumentMoniker": "Application\\Class1.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Class1.cs",
+              "RelativeToolTip": "Application\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:06:08.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Class1.cs",
+              "RelativeDocumentMoniker": "Domain\\Class1.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Class1.cs",
+              "RelativeToolTip": "Domain\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T04:05:57.51Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
