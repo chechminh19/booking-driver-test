@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|d:\\cn8\\prn231\\ass1\\bookingdriverass1\\domain\\entity\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|d:\\cn8\\prn231\\ass1\\bookingdriverass1\\domain\\entity\\coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AB7C627-D1EE-4F09-9E59-5B00CC32DEAD}|Domain\\Domain.csproj|solutionrelative:domain\\entity\\coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -63,6 +67,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Payment.cs",
+              "RelativeDocumentMoniker": "Domain\\Entity\\Payment.cs",
+              "ToolTip": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Payment.cs",
+              "RelativeToolTip": "Domain\\Entity\\Payment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T05:48:58.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Coordinate.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Coordinate.cs",
               "RelativeDocumentMoniker": "Domain\\Entity\\Coordinate.cs",
@@ -75,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Rating.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Rating.cs",
               "RelativeDocumentMoniker": "Domain\\Entity\\Rating.cs",
@@ -87,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Trip.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\Trip.cs",
               "RelativeDocumentMoniker": "Domain\\Entity\\Trip.cs",
@@ -99,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Entity\\User.cs",
               "RelativeDocumentMoniker": "Domain\\Entity\\User.cs",
@@ -111,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthenService.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Service\\AuthenService.cs",
               "RelativeDocumentMoniker": "Application\\Service\\AuthenService.cs",
@@ -123,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IAuthenService.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\IService\\IAuthenService.cs",
               "RelativeDocumentMoniker": "Application\\IService\\IAuthenService.cs",
@@ -135,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Infrastructure\\Class1.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Class1.cs",
@@ -147,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Application\\Class1.cs",
               "RelativeDocumentMoniker": "Application\\Class1.cs",
@@ -159,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\CN8\\PRN231\\Ass1\\BookingDriverAss1\\Domain\\Class1.cs",
               "RelativeDocumentMoniker": "Domain\\Class1.cs",
