@@ -8,5 +8,6 @@ namespace Domain.Entity
 {
     public class User
     {
+        
     }
 }

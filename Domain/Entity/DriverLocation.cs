@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.IService
+namespace Domain.Entity
 {
-    public interface IAuthenService
+    public class DriverLocation
     {
     }
 }
