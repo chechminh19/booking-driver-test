@@ -11,13 +11,19 @@ namespace Infrastructure
     {
         private readonly UberSystemContext _dbContext;
         private readonly UserRepo _userRepository;
-        public UnitOfWork(UberSystemContext dbContext, UserRepo userRepo)
+        private readonly DriverRepo _driverRepository;
+        private readonly CustomerRepo _cusRepository;
+        public UnitOfWork(UberSystemContext dbContext, UserRepo userRepo, CustomerRepo cusRepository, DriverRepo driverRepo)
         {
             _dbContext = dbContext;
             _userRepository = userRepo;
+            _cusRepository = cusRepository;
+            _driverRepository = driverRepo;
         }
 
         public UserRepo UserRepository => _userRepository;
+        public DriverRepo DriverRepository => _driverRepository;
+        public CustomerRepo CustomerRepository => _cusRepository;
 
         public async Task<int> SaveChangeAsync()
         {

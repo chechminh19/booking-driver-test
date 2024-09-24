@@ -14,6 +14,7 @@ namespace Infrastructure.Repo
         public GenericRepo(UberSystemContext context)
         {
            _context = context;
+            _dbSet = context.Set<T>();
         }
         public Task<List<T>> GetAllAsync()
         {
@@ -36,6 +37,19 @@ namespace Infrastructure.Repo
             _ = _dbSet.Update(entity);
             _ = await _context.SaveChangesAsync();
         }
+        public async Task UpdateUser(User user)
+        {
+            var existingUser = await _context.Users.FindAsync(user.Id);
+            if (existingUser == null)
+            {
+                throw new Exception("User not found");
+            }
+            existingUser.UserName = user.UserName;
+            existingUser.Email = user.Email;
+            existingUser.Password = user.Password;
+
+            await _context.SaveChangesAsync();
+        }
 
         public async Task Remove(T entity)
         {
@@ -43,6 +57,7 @@ namespace Infrastructure.Repo
             _ = await _context.SaveChangesAsync();
         }
 
+      
         public void UpdateE(T entity)
         {
             _dbSet.Update(entity);

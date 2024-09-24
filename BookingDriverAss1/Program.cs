@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using System.Text;
+using BookingDriverAss1.Middlware;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var myConfig = new AppConfiguration();
@@ -47,7 +48,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "ZodiacJewerly.API",
+        Title = "UberSystem.API",
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -67,7 +68,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+ 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -76,9 +77,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<ConfirmationTokenMiddleware>();
 app.MapControllers();
 
 app.Run();

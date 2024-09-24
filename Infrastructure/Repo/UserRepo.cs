@@ -15,13 +15,19 @@ namespace Infrastructure.Repo
         {
             _dbContext = context;
         }
+        public async Task<User> GetByIdAsync(long id)
+            => await _context.Users.FindAsync(id);
+        
+        public async Task<int> GetCountAsync()
+            => await _context.Users.CountAsync();
+        
         public async Task<User> GetUserByEmailAddressAndPassword(string email, string password)
-        {
-            var user = await _dbContext.Users
-                .FirstOrDefaultAsync(record => record.Email == email && record.Password == password);
-           
-
-            return user;
-        }
+            => await _dbContext.Users
+                .FirstOrDefaultAsync(record => record.Email == email && record.Password == password);                
+        public async Task<bool> CheckEmailAddressExisted(string email) 
+            => await _dbContext.Users.AnyAsync(u => u.Email == email);
+        public async Task<User> GetUserByConfirmationToken(string token) 
+            => await _dbContext.Users.SingleOrDefaultAsync(
+                u => u.Token == token);
     }
 }

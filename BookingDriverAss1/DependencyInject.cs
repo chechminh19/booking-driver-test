@@ -13,6 +13,8 @@ namespace BookingDriverAss1
             services.AddHealthChecks();          
             
             services.AddScoped<UserRepo>();
+            services.AddScoped<DriverRepo>();
+            services.AddScoped<CustomerRepo>();
             services.AddScoped<UnitOfWork>();
             services.AddScoped<UserService>();
             return services;
