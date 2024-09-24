@@ -35,5 +35,27 @@ namespace BookingDriverAss1.Controllers
                 );
             }
         }
+        //[HttpPost("login")]
+        //public async Task<IActionResult> LoginAsync(LoginUserDTO loginObject)
+        //{
+        //    var result = await _userService.LoginAsync(loginObject);
+
+        //    if (!result.Success)
+        //    {
+        //        return StatusCode(401, result);
+        //    }
+        //    else
+        //    {
+        //        return Ok(
+        //            new
+        //            {
+        //                success = result.Success,
+        //                message = result.Message,
+        //                token = result.DataToken,
+        //                role = result.Role,
+        //            }
+        //        );
+        //    }
+        //}
     }
 }
