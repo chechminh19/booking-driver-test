@@ -1,8 +1,10 @@
 ﻿using Application.DTO;
 using Application.Service;
 using Infrastructure.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using static Azure.Core.HttpHeader;
 
 namespace BookingDriverAss1.Controllers
@@ -15,43 +17,92 @@ namespace BookingDriverAss1.Controllers
         {
             _userService = userService;
         }
+        /// <summary>
+        /// Login into Ubersystem
+        /// </summary>
+        /// <param name="loginObject"></param>
+        /// <returns></returns>
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync(LoginUserDTO loginObject)
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<ApiResponse<string>>> LoginAsync(LoginUserDTO loginObject)
         {
             var result = await _userService.LoginAsync(loginObject);
 
-            if (!result.Success)
+            if (result.StatusCode != HttpStatusCode.OK)
             {
-                return StatusCode(401, result);
+                return StatusCode(StatusCodes.Status401Unauthorized, new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.Unauthorized,
+                    Message = result.Message,
+                    Data = null
+                });
             }
             else
             {
                 return Ok(
-                    new
-                    {
-                        success = result.Success,
-                        message = result.Message,
-                        token = result.DataToken,
-                        role = result.Role,
-                    }
+                   new ApiResponse<string>
+                   {
+                       StatusCode = HttpStatusCode.OK,
+                       Message = "Login successful",
+                       Data = result.Data
+                   }
                 );
             }
         }
+
+        /// <summary>
+        /// Register new customer or driver into Ubersystem
+        /// </summary>
+        /// <param name="registerObject"></param>
+        /// <returns></returns>
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDTO registerObject)
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<ApiResponse<RegisterDTO>>> Register(RegisterDTO registerObject)
         {
             var result = await _userService.RegisterAsync(registerObject);
 
-            if (!result.Success)
+            return result.StatusCode switch
             {
-                return BadRequest(result);
-            }
-            else
-            {
-                return Ok(result);
-            }
+                HttpStatusCode.OK => Ok(new ApiResponse<RegisterDTO>
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = result.Message,
+                    Data = result.Data
+                }),
+                HttpStatusCode.Conflict => Conflict(new ApiResponse<RegisterDTO>
+                {
+                    StatusCode = HttpStatusCode.Conflict,
+                    Message = result.Message,
+                    Data = null
+                }),
+                HttpStatusCode.BadRequest => BadRequest(new ApiResponse<RegisterDTO>
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = result.Message,
+                    Data = null
+                }),
+                HttpStatusCode.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse<RegisterDTO>
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = result.Message,
+                    Data = null
+                }),
+                _ => StatusCode((int)result.StatusCode, result)
+            };
         }
+        /// <summary>
+        /// GetUserProfile Ubersystem
+        /// </summary>
+        /// <param name="idUser"></param>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetUserInFor(long idUser)
         {
             var result = await _userService.GetUserByIdAsync(idUser);
@@ -65,34 +116,94 @@ namespace BookingDriverAss1.Controllers
                 return Ok(result);
             }
         }
+        /// <summary>
+        /// Update profile user Ubersystem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateUserDTO"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateUser(long id, UpdateUserDTO updateUserDTO)
         {
             if (id != updateUserDTO.Id)
             {
-                return BadRequest(new { Message = "ID mismatch" });
+                return BadRequest(new ApiResponse<UpdateUserDTO>
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "ID mismatch",
+                    Data = null
+                });
             }
             var result = await _userService.UpdateUserAsync(updateUserDTO);
-            if (!result.Success)
+            return result.StatusCode switch
             {
-                return BadRequest(result);
-            }
-
-            return Ok(result);
+                HttpStatusCode.OK => Ok(new ApiResponse<UpdateUserDTO>
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = result.Message,
+                    Data = result.Data
+                }),
+                HttpStatusCode.Conflict => Conflict(new ApiResponse<UpdateUserDTO>
+                {
+                    StatusCode = HttpStatusCode.Conflict,
+                    Message = result.Message,
+                    Data = null
+                }),
+                HttpStatusCode.NotFound => NotFound(new ApiResponse<UpdateUserDTO>
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = result.Message,
+                    Data = null
+                }),
+                HttpStatusCode.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse<UpdateUserDTO>
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = result.Message,
+                    Data = null
+                }),
+                _ => StatusCode((int)result.StatusCode, result)
+            };
         }
+        /// <summary>
+        /// Delete profile user Ubersystem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteUser(long id)
         {
             var result = await _userService.DeleteUserAsync(id);
-            if (!result.Success)
+            return result.StatusCode switch
             {
-                return BadRequest(result);
-            }
-
-            return Ok(result);
+                HttpStatusCode.OK => Ok(new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = result.Message,
+                    Data = result.Data
+                }),
+                HttpStatusCode.NotFound => NotFound(new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = result.Message,
+                    Data = null
+                }),
+                HttpStatusCode.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = result.Message,
+                    Data = null
+                }),
+                _ => StatusCode((int)result.StatusCode, result)
+            };
         }
-
-
-
+       
     }
 }

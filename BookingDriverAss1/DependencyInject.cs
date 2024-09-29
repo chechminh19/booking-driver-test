@@ -15,8 +15,13 @@ namespace BookingDriverAss1
             services.AddScoped<UserRepo>();
             services.AddScoped<DriverRepo>();
             services.AddScoped<CustomerRepo>();
-            services.AddScoped<UnitOfWork>();
+            services.AddScoped<RatingRepo>();
+            services.AddScoped<TripRepo>();
+            services.AddScoped<UnitOfWork>();       
             services.AddScoped<UserService>();
+            services.AddScoped<RatingService>();
+            services.AddScoped<TripService>();
+            services.AddScoped<DriverLocation>();
             return services;
         }
     }

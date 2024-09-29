@@ -29,8 +29,7 @@ namespace BookingDriverAss1.Middlware
                         user.IsConfirm = true;
                         user.Token = null;
                         await unitOfWork.SaveChangeAsync();
-                        //context.Response.Redirect("https://localhost:7128/swagger/index.html");
-                        await context.Response.WriteAsync("Email has been confirmed successfully!");
+                        context.Response.Redirect("https://localhost:7128/swagger/index.html");                   
                         return;
                     }
                 }

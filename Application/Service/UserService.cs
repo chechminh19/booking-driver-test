@@ -11,6 +11,7 @@ using Application.AppConfig;
 using Application.Utils;
 using AutoMapper;
 using Infrastructure.DTO;
+using System.Net;
 namespace Application.Service
 {
     public class UserService
@@ -32,17 +33,20 @@ namespace Application.Service
             }
             return _mapper.Map<UserInfor>(user);
         }
-        public async Task<ServiceResponse<string>> DeleteUserAsync(long id)
+        public async Task<ApiResponse<string>> DeleteUserAsync(long id)
         {
-            var response = new ServiceResponse<string>();
+            var response = new ApiResponse<string>();
             try
             {
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
                 if (user == null)
                 {
-                    response.Success = false;
-                    response.Message = "User not found";
-                    return response;
+                    return new ApiResponse<string>
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "User not found",
+                        Data = null
+                    };
                 }
                 if (user.Role == "Driver")
                 {
@@ -64,43 +68,47 @@ namespace Application.Service
                 await _unitOfWork.UserRepository.Remove(user);
                 await _unitOfWork.SaveChangeAsync();
 
-                response.Success = true;
+                response.StatusCode = HttpStatusCode.OK;
                 response.Message = "User deleted successfully";
             }
             catch (DbException e)
             {
-                response.Success = false;
+                response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = "Database error occurred.";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.Data = null;
             }
             catch (Exception e)
             {
-                response.Success = false;
-                response.Message = "Error";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "An error occurred.";
+                response.Data = null;
             }
             return response;
         }
 
-        public async Task<ServiceResponse<UpdateUserDTO>> UpdateUserAsync(UpdateUserDTO updateUserDTO)
+        public async Task<ApiResponse<UpdateUserDTO>> UpdateUserAsync(UpdateUserDTO updateUserDTO)
         {
-            var response = new ServiceResponse<UpdateUserDTO>();
+            var response = new ApiResponse<UpdateUserDTO>();
             try
             {
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(updateUserDTO.Id);
                 if (user == null)
                 {
-                    response.Success = false;
-                    response.Message = "User not found";
-                    return response;
+                    return new ApiResponse<UpdateUserDTO>
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "User not found"
+                    };
                 }
                 user.UserName = updateUserDTO.UserName;
                 var existEmail = await _unitOfWork.UserRepository.CheckEmailAddressExisted(updateUserDTO.Email);
                 if (existEmail)
                 {
-                    response.Success = false;
-                    response.Message = "Email is already existed";
-                    return response;
+                    return new ApiResponse<UpdateUserDTO>
+                    {
+                        StatusCode = HttpStatusCode.Conflict,
+                        Message = "Email is already existed"
+                    };
                 }
                 user.Email = updateUserDTO.Email;
                 user.Password = updateUserDTO.Password;
@@ -108,39 +116,43 @@ namespace Application.Service
                 await _unitOfWork.UserRepository.UpdateUser(user);
                 await _unitOfWork.SaveChangeAsync();
 
-                response.Success = true;
+                response.StatusCode = HttpStatusCode.OK;
                 response.Data = _mapper.Map<UpdateUserDTO>(user);
                 response.Message = "User updated successfully";
             }
             catch (DbException e)
             {
-                response.Success = false;
-                response.Message = "Database error occurred.";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Error occurred.";
+                response.Data = null;
+                response.ErrorMessage = new string(e.Message);
             }
             catch (Exception e)
             {
-                response.Success = false;
-                response.Message = "Error";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Error occurred.";
+                response.Data = null;
+                response.ErrorMessage = new string(e.Message);
             }
             return response;
         }
-        public async Task<ServiceResponse<RegisterDTO>> RegisterAsync(RegisterDTO userObjectDTO)
+        public async Task<ApiResponse<RegisterDTO>> RegisterAsync(RegisterDTO userObjectDTO)
         {
-            var response = new ServiceResponse<RegisterDTO>();
+            var response = new ApiResponse<RegisterDTO>();
             try
             {
                 var existEmail = await _unitOfWork.UserRepository.CheckEmailAddressExisted(userObjectDTO.Email);
                 if (existEmail)
                 {
-                    response.Success = false;
-                    response.Message = "Email is already existed";
-                    return response;
+                    return new ApiResponse<RegisterDTO>
+                    {
+                        StatusCode = HttpStatusCode.Conflict,
+                        Message = "Email is already existed"
+                    };
                 }
 
                 var userAccountRegister = _mapper.Map<User>(userObjectDTO);
-                var currentCount = await _unitOfWork.UserRepository.GetCountAsync();
+                var currentCount = await _unitOfWork.UserRepository.GetMaxIdAsync();
                 userAccountRegister.Id = currentCount + 1;
                 userAccountRegister.Role = userObjectDTO.Role;
                 userAccountRegister.UserName = userObjectDTO.FullName;
@@ -152,10 +164,10 @@ namespace Application.Service
                 
                 if (userObjectDTO.Role == "Driver")
                 {
-                    var driverId = await _unitOfWork.DriverRepository.GetCountAsync() + 1;
+                    var driverId = await _unitOfWork.DriverRepository.GetMaxIdAsync() + 1;
                     var driver = new Driver
                     {
-                        Id = driverId,
+                        Id = driverId + 1,
                         CreateAt = BitConverter.GetBytes(DateTime.Now.ToBinary()),
                         UserId = userAccountRegister.Id
                     };
@@ -164,10 +176,10 @@ namespace Application.Service
                 }
                 else if (userObjectDTO.Role == "Customer")
                 {
-                    var customerId = await _unitOfWork.CustomerRepository.GetCountAsync() + 1;
+                    var customerId = await _unitOfWork.CustomerRepository.GetMaxIdAsync() + 1;
                     var customer = new Customer
                     {
-                        Id = customerId,
+                        Id = customerId + 1,
                         CreateAt = BitConverter.GetBytes(DateTime.Now.ToBinary()),
                         UserId = userAccountRegister.Id
                     };
@@ -176,81 +188,95 @@ namespace Application.Service
                 }
                 else
                 {
-                    response.Success = false;
-                    response.Message = "Invalid role";
-                    return response;
+                    return new ApiResponse<RegisterDTO>
+                    {
+                        StatusCode = HttpStatusCode.BadRequest,
+                        Message = "Invalid role"
+                    };
+
                 }
-               
+
                 //SendMail
                 var emailSend = await SendMail.SendConfirmationEmail(userObjectDTO.Email, confirmationLink);
                 if (!emailSend)
                 {
-                    response.Success = false;
-                    response.Message = "Error when send mail";
-                    return response;
+                    return new ApiResponse<RegisterDTO>
+                    {
+                        StatusCode = HttpStatusCode.InternalServerError,
+                        Message = "Error when sending mail"
+                    };
                 }
 
                 var accountRegistedDTO = _mapper.Map<RegisterDTO>(userAccountRegister);
-                response.Success = true;
+                response.StatusCode = HttpStatusCode.OK;
                 response.Data = accountRegistedDTO;
                 response.Message = "Register successfully.";
             }
             catch (DbException e)
             {
-                response.Success = false;
+                response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = "Database error occurred.";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.Data = null;
             }
             catch (Exception e)
             {
-                response.Success = false;
-                response.Message = "Error";
-                response.ErrorMessages = new List<string> { e.Message };
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Error occurred.";
+                response.Data = null;
             }
-
             return response;
         }
-        public async Task<LoginToken<string>> LoginAsync(LoginUserDTO userObject)
+        public async Task<ApiResponse<string>> LoginAsync(LoginUserDTO userObject)
         {
-            var response = new LoginToken<string>();
+            var response = new ApiResponse<string>();
             try
             {
                 var userLogin =
                     await _unitOfWork.UserRepository.GetUserByEmailAddressAndPassword(userObject.Email, userObject.Password);
                 if (userLogin == null)
                 {
-                    response.Success = false;
-                    response.Message = "Invalid username or password";
-                    return response;
+                    return new ApiResponse<string>
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "Invalid username or password"
+                    };
+                   
                 }
 
                 if (userLogin.Token != null && !userLogin.IsConfirm)
                 {
-                    System.Console.WriteLine(userLogin.Token + userLogin.IsConfirm);
-                    response.Success = false;
-                    response.Message = "Please confirm via link in your mail";
-                    return response;
+                    return new ApiResponse<string>
+                    {
+                        StatusCode = HttpStatusCode.Unauthorized,
+                        Message = "Please confirm via link in your mail"
+                    };
                 }
 
                 var auth = userLogin.Role;
                 var userId = userLogin.Id;
                 var token = userLogin.GenerateJsonWebToken(_config, _config.JWTSection.SecretKey, DateTime.Now);
-                response.Success = true;
+                response.StatusCode = HttpStatusCode.OK;
                 response.Message = "Login successfully";
-                response.DataToken = token;
-                response.Role = auth;               
+                response.Data = token;
+                               
             }
             catch (DbException ex)
             {
-                response.Success = false;
-                response.Message = "Database error occurred.";
-                response.ErrorMessages = new List<string> { ex.Message };
+                return new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = "Database error occurred.",
+                    Data = null
+                };
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.Message = "Error";
-                response.ErrorMessages = new List<string> { ex.Message };
+                return new ApiResponse<string>
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = "Error",
+                    Data = null
+                };
             }
 
             return response;

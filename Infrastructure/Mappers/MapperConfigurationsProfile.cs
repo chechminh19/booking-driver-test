@@ -16,6 +16,7 @@ namespace Infrastructure.MapperConfigurationsProfile
             CreateMap<User, RegisterDTO>().ReverseMap();
             CreateMap<User, UpdateUserDTO>().ReverseMap(); 
             CreateMap<User, UserInfor>().ReverseMap();
+            CreateMap<Rating, RatingDTO>().ReverseMap();
         }
     }
 }

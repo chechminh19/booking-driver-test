@@ -17,10 +17,13 @@ namespace Infrastructure.Repo
         }
         public async Task<User> GetByIdAsync(long id)
             => await _context.Users.FindAsync(id);
-        
-        public async Task<int> GetCountAsync()
-            => await _context.Users.CountAsync();
-        
+
+        public async Task<long> GetMaxIdAsync()
+        {
+            return await _context.Users.MaxAsync(u => u.Id);
+        }
+
+
         public async Task<User> GetUserByEmailAddressAndPassword(string email, string password)
             => await _dbContext.Users
                 .FirstOrDefaultAsync(record => record.Email == email && record.Password == password);                

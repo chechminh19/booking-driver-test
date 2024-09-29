@@ -17,8 +17,10 @@ namespace Infrastructure.Repo
         }
         public async Task<Customer> GetByIdAsync(long id)
           => await _context.Customers.FindAsync(id);
-        public async Task<int> GetCountAsync()
-           => await _context.Customers.CountAsync();
+        public async Task<long> GetMaxIdAsync()
+        {
+            return await _context.Customers.MaxAsync(u => u.Id);
+        }
         public async Task<Customer> GetIdUserFromCustomer(long userId)
            => await _context.Customers.FirstOrDefaultAsync(d => d.UserId == userId);
     }
