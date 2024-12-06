@@ -1,0 +1,7 @@
+Register User (Driver and Customer) (CRUD, with user email authentication)
+Request driver (Every 15 seconds send a request to the system to update his/her location, status "waiting for customers, performing tasks"
+Customer makes a trip booking including pick-up and drop-off points, the system responds to drivers who have not accepted trips and have a radius within 2 km (compared to the pick-up point). Priority is given to Drivers with high ratings
+Drivers confirm to pick up customers and update status, until the end of the trip.
+Customers rate drivers
+All APIs need to have specific content,
+Documentation comments
