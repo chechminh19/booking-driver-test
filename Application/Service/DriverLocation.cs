@@ -5,6 +5,7 @@ using Infrastructure.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ServiceStack.Text;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -42,7 +43,7 @@ namespace Application.Service
         public Location GetRandomLocationFromCsv()
         {
             using (var reader = new StreamReader("C:\\Users\\ADMIN\\Downloads\\new_clean_bo3.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            using (var csv = new CsvHelper.CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 var records = csv.GetRecords<LocationData>().ToList();
                 var randomRecord = records[_random.Next(records.Count)];
@@ -92,7 +93,6 @@ namespace Application.Service
                         {
                             updateTasks.Add(UpdateLocationAsync(driver));
                             _logger.LogInformation("Location change");
-
                         }
 
                         await Task.WhenAll(updateTasks);

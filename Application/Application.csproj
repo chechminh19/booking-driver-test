@@ -12,6 +12,7 @@
     <PackageReference Include="MailKit" Version="4.7.1.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="MimeKit" Version="4.7.1" />
+    <PackageReference Include="ServiceStack.Text" Version="8.5.2" />
   </ItemGroup>
     
   <ItemGroup>
